@@ -1,0 +1,82 @@
+.left img{
+    width: 53px;
+    height: 42px;
+    background-color: rgb(54, 53, 53);
+}
+
+.left
+{
+
+    width: 25vw;
+    margin: 5px 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+img{
+   filter: invert(1);
+
+    
+}
+
+body{
+    background-color: black;
+    display: flex;
+}
+
+.right{
+    color:white;
+    display: flex;
+    width: 75vw;
+    height: 70vh;
+    margin: 10px;
+    flex-direction: column;
+    
+}
+
+.home
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 5px;
+    background-color: gray;
+    padding:10px;
+    
+}
+
+.library{
+
+    background-color: gray;
+     padding: 10px 10px;
+    border-radius: 5px;
+    height: 260px;
+}
+
+.header{
+    background-color: blueviolet;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+
+}
+
+
+.loginbtn
+{
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 13px;
+    padding: 8px;
+    margin: 8px;
+}
+
+.signupbtn
+{
+    background-color: blueviolet;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+}
