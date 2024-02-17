@@ -1,8 +1,8 @@
 .left img{
-    width: 53px;
-    height: 42px;
-    background-color: rgb(54, 53, 53);
+    width: 89px;
+    height: 29px;
 }
+    
 
 .left
 {
@@ -12,12 +12,21 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative;
 }
-img{
+.left img{
    filter: invert(1);
+    
 
     
 }
+.left a
+{
+    text-decoration: none;
+    color: white;
+
+}
+
 
 body{
     background-color: black;
@@ -25,12 +34,16 @@ body{
 }
 
 .right{
-    color:white;
+
     display: flex;
     width: 75vw;
-    height: 70vh;
+    height:92vh;
     margin: 10px;
     flex-direction: column;
+    border-radius: 11px;
+    background-color:#1d1d1d;
+    position: relative;
+
     
 }
 
@@ -40,32 +53,39 @@ body{
     flex-direction: column;
     gap: 10px;
     border-radius: 5px;
-    background-color: gray;
+    background-color: #121212;
     padding:10px;
+    margin: 5px;
+
     
 }
 
 .library{
 
-    background-color: gray;
-     padding: 10px 10px;
-    border-radius: 5px;
-    height: 260px;
+    background-color:#121212;
+    border-radius: 11px;
+    height:430px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
 }
 
 .header{
-    background-color: blueviolet;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
 
+    height: 50px;
+    position: absolute;
+    z-index: 1;
+    background-color: #121212;
+    width: 72vw;
 }
 
 
 .loginbtn
-{
-    border: none;
+{   border: none;
     font-size: 14px;
     font-weight: bold;
     border-radius: 13px;
@@ -73,10 +93,161 @@ body{
     margin: 8px;
 }
 
-.signupbtn
-{
-    background-color: blueviolet;
+.libbtn{
     border: none;
     font-size: 14px;
     font-weight: bold;
+    border-radius: 13px;
+    padding: 8px 15px;
 }
+.signupbtn
+{      background-color: #121212;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    color:white;
+}
+
+.playlist{
+    margin-top: 64px;
+    overflow: auto;
+
+    height: 524px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.lib-header{
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+}
+.lib-body{
+    color: white;
+    background-color: #5f5e5e;
+    overflow: auto;
+    border-radius: 7px;
+    height: 272px;
+
+}
+.library .footer{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    column-gap: 0px;
+    row-gap: 0px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+
+}
+.cards
+{
+
+    height:364px;
+    padding: 7px ;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+
+}
+.card{
+    width: 161px;
+    height: 206px;
+    background-color: #131313;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+
+}
+.img>img{
+    width: 139px;
+    height: 134px;
+}
+
+
+.abovebar{
+    background-color:rgb(136, 134, 134);
+    height:40px;   
+    width:93vh;
+    margin: auto; 
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 15px;
+    
+}
+
+.seekbar
+{
+    background-color: white;
+    height: 5px;
+    width: 90vh;
+    margin: auto;
+    border-radius: 2px;
+
+
+}
+.abovebar img{
+    width: 29px;
+    height: 27px;    
+}
+
+
+.playbuttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.song{
+
+    height: 50px;
+    border-radius: 5px;
+    margin: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    border:2px solid black;
+}
+
+.lib-body>ul{
+        height: 430px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow: auto;
+        margin: 0;
+        padding: 0;
+ 
+ }
+ .lib-body > ul li {
+    list-style: none;
+    margin: 5px;
+    display: flex;
+    flex-direction: row; /* Change to row to create columns */
+    align-items: center; /* Align items vertically */
+    height:57px;
+    border-radius: 3px;
+    border: 2px solid white;
+}
+
+.lib-body > ul li > * {
+    flex: 1; /* Each child element takes up equal space */
+    text-align: center; /* Center text */
+}
+
+.lib-body > ul li p {
+    flex: 2; /* Make paragraph take up more space */
+}
+
+ 
