@@ -1,11 +1,10 @@
 let songsnames;
 let currentSong = null; // Initialize currentSong with null
 let isAudioPlaying=false
+let currentSongPath;
 document.addEventListener('DOMContentLoaded', () => {
     // Call getSongs function and pass displaySongs as a callback
     getSongs(displaySongs);
-
-
 
 });
 
@@ -41,7 +40,7 @@ function getSongs(callback) {
 
 function displaySongs(anchorElements) {
     let ulElement = document.querySelector('.lib-body > ul');
-    console.log("Ul List:", ulElement, '\n \n \n');
+ //   console.log("Ul List:", ulElement, '\n \n \n');
 
     //let songsnames = ""; // Initialize song names variable
 
@@ -98,11 +97,11 @@ const playMusic=(pathParams)=>
             
                 // Extract the filename (last element in the array)
               let filename = songNames[songNames.length - 1];
-                  
-                
+                   currentSongPath=filename;
+                    console.log(currentSongPath,filename)
                 // Construct the path using forward slashes
                 let path = './songs/' + filename;
-              console.log("in isaudio condition ",songNames)
+           //   console.log("in isaudio condition ",songNames)
                 // Check if there's already an audio playing
                 if (currentSong) {
                     // If so, stop the playback
@@ -132,7 +131,7 @@ const playMusic=(pathParams)=>
                 // Now you can use the 'currentSong' variable to control playback or perform any other operations
             }
     
-            console.log("again clicked ")
+           // console.log("again clicked ")
             if (currentSong) { // Check if currentSong is not null
                 // Event listener to reset isAudioPlaying flag and currentSong when audio finishes
         currentSong.addEventListener('ended', () => {
@@ -155,11 +154,13 @@ playCircleImage.addEventListener("click", () => {
     {
 
         let song=songsnames.split('\\');
-        console.log('./songs/'+song[song.length-2])
-       currentSong=new Audio('./songs/'+song[song.length-2])
+        console.log(song)
+        currentSongPath=song[2]
+       currentSong=new Audio('./songs/'+song[2])
        currentSong.play();
        playCircleImage.src = "pause.svg"
        console.log(playCircleImage.src)
+       return
     }
     else if (currentSong.paused) {
         currentSong.play()
@@ -177,27 +178,125 @@ prev.addEventListener('click',()=>{
     if(currentSong==null)
     {
 
-        let song=songsnames.split('\\');
-        console.log('./songs/'+song[song.length-2])
-       currentSong=new Audio('./songs/'+song[song.length-2])
+       let song=songsnames.split('\\');
+       console.log(song)
+       currentSongPath=song[2]
+       currentSong=new Audio('./songs/'+song[2])
        currentSong.play();
        playCircleImage.src = "pause.svg"
        console.log(playCircleImage.src)
+       return
     }
+   
+    
+    let songs=songsnames.split('\\')
+    console.log("after splitting",songs)
+
+    let finalSongs=[];
+
+    for(let song of songs )
+    {
+        if(song.endsWith(".opus"))
+        {
+            finalSongs.push(song);
+            //console.log(song)
+        }
+    }
+
+    console.log("before final previous loop",finalSongs)
+      let prevPlay=false;
+   for(let i=0;i<finalSongs.length;i++)
+   {
+
+    
+    //console.log(songName)
+
+    if(finalSongs[i]==currentSongPath)
+    {
+        console.log("paths and text",finalSongs[i],currentSong,"insdie current song path if condition")
+        prevPlay=true;
+        continue;
+        
+    }
+    if(prevPlay&i>0)
+    {
+        currentSong.src='./songs/'+finalSongs[i-1];
+        console.log(currentSong,currentSong.src)
+        nextPlay=false;
+     console.log("previous song playing ",currentSong)
+     currentSong.play();
+        break;
+    }
+    else
+    {
+        console.log("No previous song in song list.")
+    }
+
+   }
+   
+
 })
 
 
 const next= document.querySelector('.abovebar .playbuttons img[src="next.svg"]');
 next.addEventListener('click',()=>{
+    
     if(currentSong==null)
     {
 
         let song=songsnames.split('\\');
-        console.log('./songs/'+song[song.length-2])
-       currentSong=new Audio('./songs/'+song[song.length-2])
+        console.log(song)
+        currentSongPath=song[2]
+       currentSong=new Audio('./songs/'+song[2])
        currentSong.play();
        playCircleImage.src = "pause.svg"
        console.log(playCircleImage.src)
+       return
     }
+   
+    let songs=songsnames.split('\\')
+    console.log("after splitting",songs)
+
+    let finalSongs=[];
+
+    for(let song of songs )
+    {
+        if(song.endsWith(".opus"))
+        {
+            finalSongs.push(song);
+            //console.log(song)
+        }
+    }
+
+    console.log("before finak next loop",finalSongs)
+      let nextPlay=false;
+   for(let i=0;i<finalSongs.length;i++)
+   {
+
+    //console.log(songName)
+
+    if(finalSongs[i]==currentSongPath)
+    {
+        console.log("paths and text",finalSongs[i],currentSong,"insdie current song path if condition")
+        nextPlay=true;
+        continue;
+        
+    }
+    if(nextPlay)
+    {
+        currentSong.src='./songs/'+finalSongs[i];
+        console.log(currentSong,currentSong.src)
+        nextPlay=false;
+     console.log("next song playing ",currentSong)
+     currentSong.play();
+        break;
+    }
+
+   if(finalSongs.length-1==i)
+   {
+     prompt("No next song in SOng list.")
+   }
+   }
+   
 })
 
