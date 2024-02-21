@@ -2,6 +2,7 @@
     width: 89px;
     height: 29px;
 }
+
     
 
 .left
@@ -201,6 +202,7 @@ body{
 }
 
 
+
 .playbuttons{
     display: flex;
     align-items: center;
@@ -250,4 +252,12 @@ body{
     flex: 2; /* Make paragraph take up more space */
 }
 
- 
+ :hover .card{
+    cursor: pointer;
+    background-color: #5f5e5e;
+   .
+ }
+
+ :hover .lib-body{
+    cursor: pointer;
+ }

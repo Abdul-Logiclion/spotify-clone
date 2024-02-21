@@ -115,6 +115,7 @@ const playMusic=(pathParams)=>
                 currentSong.addEventListener('canplaythrough', () => {
                     // Start playback once the audio is fully loaded
                     currentSong.play();
+                    playCircleImage.src = "pause.svg";
                 });
             
                 // Optional: Add event listener for 'error' event to handle any loading errors
@@ -172,16 +173,10 @@ playCircleImage.addEventListener("click", () => {
 
     if (currentSong) {
         // Define the callback function
-        function handleSongEnd() {
-            isAudioPlaying = false;
-            currentSong.removeEventListener('ended', handleSongEnd);
-            currentSong = null; // Reset currentSong when playback ends
-            playCircleImage.src = "play-circle.svg";
-            console.log("Song finished in playmusic");
-        }
-
-        // Add the event listener using the callback function
-        currentSong.addEventListener('ended', handleSongEnd);
+         removeEvents()
+    }
+    else{
+        return
     }
 });
      
@@ -202,6 +197,7 @@ prev.addEventListener('click',()=>{
        currentSong.play();
        console.log(currentSong.src," is playing...")
        playCircleImage.src = "pause.svg"
+       removeEvents();
        return
     }
    
@@ -255,18 +251,11 @@ prev.addEventListener('click',()=>{
    
    if (currentSong) {
     // Define the callback function
-    function handleSongEnd() {
-        isAudioPlaying = false;
-        currentSong.removeEventListener('ended', handleSongEnd);
-        currentSong = null; // Reset currentSong when playback ends
-        playCircleImage.src = "play-circle.svg";
-        console.log("Song finished in playmusic");
-    }
-
-    // Add the event listener using the callback function
-    currentSong.addEventListener('ended', handleSongEnd);
+    removeEvents();
 }
-   
+ else{
+    return
+ }  
 
 })
 
@@ -282,11 +271,12 @@ next.addEventListener('click',()=>{
         
         let song=songsnames.split('\\');
         
-        currentSongPath=song[2]
+       currentSongPath=song[2]
        currentSong=new Audio('./songs/'+song[2])
        currentSong.play();
        console.log(currentSong.src," is playing...")
        playCircleImage.src = "pause.svg"
+       removeEvents();
        return
     }
    
@@ -326,6 +316,29 @@ next.addEventListener('click',()=>{
      prompt("No next song in SOng list.")
    }
    }
-   
+   removeEvents()
 })
 
+
+
+function removeEvents()
+{
+    if (currentSong) {
+        // Define the callback function
+        function handleSongEnd() {
+            isAudioPlaying = false;
+            if(currentSong)
+            {
+                currentSong.removeEventListener('ended', handleSongEnd);
+            
+
+            }
+            currentSong = null; // Reset currentSong when playback ends
+            playCircleImage.src = "play-circle.svg";
+            console.log("Song finished in playmusic");
+        }
+         
+        // Add the event listener using the callback function
+        currentSong.addEventListener('ended', handleSongEnd);
+    }
+}
