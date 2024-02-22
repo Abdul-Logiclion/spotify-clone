@@ -330,8 +330,6 @@ function removeEvents()
             if(currentSong)
             {
                 currentSong.removeEventListener('ended', handleSongEnd);
-            
-
             }
             currentSong = null; // Reset currentSong when playback ends
             playCircleImage.src = "play-circle.svg";
@@ -342,3 +340,23 @@ function removeEvents()
         currentSong.addEventListener('ended', handleSongEnd);
     }
 }
+
+let bar = document.querySelector('.seekbar');
+document.querySelector(".seekbar").addEventListener("click", e => {
+    let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
+    document.querySelector(".circle").style.left = percent + "%";
+   // currentSong.currentTime = ((currentSong.duration) * percent) / 100
+   bar.style.backgroundColor = "black"; 
+
+   let newWidth = percent + "%";
+   bar.style.background = `linear-gradient(to right, black ${newWidth}, #ccc ${newWidth})`;
+
+})
+
+
+let circle = document.querySelector('.circle');
+if(currentSong){
+currentSong.addEventListener('timeupdate', function() {
+    let percent = (currentSong.currentTime / currentSong.duration) * 100;
+    circle.style.left = percent + "%";
+});}
